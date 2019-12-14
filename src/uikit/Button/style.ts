@@ -11,4 +11,5 @@ export const ButtonStyled = styled.button`
   background-color: #e56e17;
   letter-spacing: 0.5px;
   cursor: pointer;
+  text-transform: uppercase;
 `;

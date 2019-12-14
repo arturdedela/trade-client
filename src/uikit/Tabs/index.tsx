@@ -6,7 +6,7 @@ function Tabs({ tabs }: TabsProps) {
   return (
     <TabsStyled>
       {tabs.map(({ active, onClick, text}) => (
-        <Tab active={active} onClick={onClick}>{text}</Tab>
+        <Tab key={text} active={active} onClick={onClick}>{text}</Tab>
       ))}
     </TabsStyled>
   )

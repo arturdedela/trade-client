@@ -2,9 +2,9 @@ import React from "react";
 import { ButtonStyled } from "./style";
 import { ButtonProps } from "./interface";
 
-function Button({ children, className, onClick }: ButtonProps) {
+function Button({ children, ...buttonProps }: ButtonProps) {
   return (
-    <ButtonStyled className={className} onClick={onClick}>
+    <ButtonStyled {...buttonProps}>
       {children}
     </ButtonStyled>
   );
