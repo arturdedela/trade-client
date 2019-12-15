@@ -1,24 +1,35 @@
 import React from "react";
-import { Price, PriceChange, PriceChangePercent, SecurityStyled, Ticker } from "./style";
+import {
+  Price,
+  PriceChange,
+  PriceChangePercent,
+  SecurityStyled,
+  Ticker
+} from "./style";
 import { SecurityProps } from "./interface";
 import { SecondaryText } from "uikit/SecondaryText";
 
 function Security({ security, className }: SecurityProps) {
-  const { priceChange, changePercents, lastDealDate, price, ticker } = security;
+  const { ticker, marketPrice, changePercents, change, fullName } = security;
 
   return (
     <SecurityStyled className={className}>
-      <Ticker>{ticker}</Ticker>
       <div>
-        <Price>{price}</Price>
-        <SecondaryText>{lastDealDate}</SecondaryText>
+        <Ticker>{ticker}</Ticker>
+        <SecondaryText>{fullName}</SecondaryText>
       </div>
       <div>
-        <PriceChangePercent negative={priceChange < 0}>{changePercents}%</PriceChangePercent>
-        <PriceChange negative={priceChange < 0}>{priceChange}</PriceChange>
+        <Price>{marketPrice}</Price>
+        {/*<SecondaryText></SecondaryText>*/}
+      </div>
+      <div>
+        <PriceChangePercent negative={changePercents < 0}>
+          {changePercents.toPrecision(2)}%
+        </PriceChangePercent>
+        <PriceChange negative={change < 0}>{change.toPrecision(4)}</PriceChange>
       </div>
     </SecurityStyled>
-  )
+  );
 }
 
 export default Security;

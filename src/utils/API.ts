@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { provide } from './IoC';
+import bind from "../shared/decorators/bind";
 
 @provide.singleton()
 export class API {
@@ -7,17 +8,13 @@ export class API {
     baseURL: "http://localhost:3000",
   });
 
-  constructor() {
-    this.onSuccess = this.onSuccess.bind(this);
-    this.onError = this.onError.bind(this);
-  }
-
   public setAuthToken(jwtToken: string) {
     this.client.defaults.headers = {
       'Authorization': 'Bearer ' + jwtToken,
     };
   }
 
+  @bind
   private onSuccess(response: AxiosResponse) {
     const { url } = response.config;
 
@@ -26,6 +23,7 @@ export class API {
     return response.data;
   }
 
+  @bind
   private onError(error: AxiosError): Promise<AxiosResponse | string>  {
     const { url } = error.config;
 

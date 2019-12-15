@@ -13,6 +13,10 @@ export const SecurityStyled = styled.div`
     background-color: #212121;
   }
   
+  > :first-child {
+    flex: 1;
+  }
+  
   > div:not(:first-child) {
     padding: 0 10px;
     text-align: right;
@@ -26,7 +30,7 @@ export const Price = styled.p`
 `;
 
 export const Ticker = styled(Price)`
-  flex: 1;
+
 `;
 
 export const PriceChangePercent = styled(Price)<{ negative: boolean }>`

@@ -1,13 +1,6 @@
-
-export interface ISecurity {
-  ticker: string;
-  price: number;
-  priceChange: number;
-  changePercents: number;
-  lastDealDate: string;
-}
+import { Security } from "../Securities/interface";
 
 export interface SecurityProps {
-  security: ISecurity;
+  security: Security;
   className?: string;
 }

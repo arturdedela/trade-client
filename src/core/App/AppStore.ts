@@ -21,7 +21,7 @@ export class AppStore {
     if (token) {
       try {
         this.api.setAuthToken(token);
-        await this.api.get('/auth/user');
+        await this.api.get('/user');
         this.userLoggedIn = true;
       } catch (e) {
         console.log(e);

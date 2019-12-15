@@ -1,24 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SecuritiesStyled } from "./style";
 import Security from "../Security";
-
-const security = {
-  ticker: "AMD",
-  price: 25.63000,
-  changePercents: -0.16,
-  lastDealDate: "6:50 PM",
-  priceChange: -0.1050
-};
+import { useStore } from "../../utils/IoC";
+import { SecuritiesStore } from "./store";
+import { observer } from "mobx-react";
 
 function Securities() {
+  const store = useStore(SecuritiesStore);
+  
+  useEffect(() => {
+    store.fetchSecurities();
+  }, [store]);
+  
   return (
     <SecuritiesStyled>
-      <Security security={security} />
-      <Security security={security} />
-      <Security security={security} />
-      <Security security={security} />
+      {store.securities.map(security => <Security security={security} />)}
     </SecuritiesStyled>
   )
 }
 
-export default Securities;
+export default observer(Securities);

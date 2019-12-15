@@ -4,13 +4,18 @@ import Button from "uikit/Button";
 import { SecondaryText } from "uikit/SecondaryText";
 import dayjs from "dayjs";
 import { ReactComponent as UserSvg } from "./user.svg";
+import { Security } from "../Securities/interface";
 
-const security = {
+const security: Security = {
   ticker: "AMD",
-  price: 25.63000,
+  marketPrice: 25.63000,
   changePercents: -0.16,
-  lastDealDate: "6:50 PM",
-  priceChange: -0.1050
+  change: -0.1050,
+  fullName: "Advanced Micro Devices",
+  id: 1,
+  marketCap: 12312,
+  openPrice: 24,
+  quantity: 23123,
 };
 
 function Header() {

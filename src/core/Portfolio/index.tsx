@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PortfolioValueWrapper, PortfolioId, PortfolioStyled, PortfolioValue, PortfolioValueChange } from "./style";
 import Tabs from "uikit/Tabs";
 import { ReactComponent as WalletSvg } from "./wallet.svg";
 import { SecondaryText } from "uikit/SecondaryText";
+import { useStore } from "utils/IoC";
+import { PortfolioStore } from "./store";
+import { observer } from "mobx-react";
+import { formatMoney } from "../../utils/formatMoney";
 
 function Portfolio() {
-  const portfolioChange = -2523;
+  const store = useStore(PortfolioStore);
+
+  useEffect(() => {
+    store.fetchPortfolio();
+  }, [store]);
+
+  const { portfolioValue, profit, securities } = store.portfolio;
 
   return (
     <PortfolioStyled>
@@ -13,11 +23,11 @@ function Portfolio() {
       <Tabs tabs={[{ text: "Портфель", active: true }]} />
       <PortfolioValueWrapper>
         <div>
-          <PortfolioValue>265945</PortfolioValue>
+          <PortfolioValue>{formatMoney(portfolioValue)}</PortfolioValue>
           <SecondaryText>Оценка портфеля</SecondaryText>
         </div>
         <div>
-          <PortfolioValueChange negative={portfolioChange < 0}>{portfolioChange}</PortfolioValueChange>
+          <PortfolioValueChange negative={profit < 0}>{formatMoney(profit)}</PortfolioValueChange>
           <SecondaryText>Прибыль</SecondaryText>
         </div>
       </PortfolioValueWrapper>
@@ -25,4 +35,4 @@ function Portfolio() {
   )
 }
 
-export default Portfolio;
+export default observer(Portfolio);
