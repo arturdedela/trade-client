@@ -1,14 +1,14 @@
-import { Security } from "../Securities/interface";
-
 export interface Portfolio {
   portfolioValue: number;
   profit: number;
-  securities: UserSecurity[];
+  securities: PortfolioSecurity[];
 }
 
-export interface UserSecurity {
-  security: Security;
-  securityId: number;
+export interface PortfolioSecurity {
+  ticker: string;
   position: number;
+  marketPrice: number;
+  equity: number;
   averagePrice: number;
+  profit: number;
 }

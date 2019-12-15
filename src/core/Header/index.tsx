@@ -22,10 +22,10 @@ function Header() {
   return (
     <HeaderStyled>
       <SelectedSecurity security={security} />
-      <Button>ЗАЯВКА</Button>
+      <Button>NEW ORDER</Button>
       <div>
-        <SecondaryText>Москва {dayjs().format("DD.MM.YYYY, mm:HH")}</SecondaryText>
-        <SecondaryText>Статус биржи: <ExchangeStatus open={false}>закрыта</ExchangeStatus></SecondaryText>
+        <SecondaryText>Moscow {dayjs().format("DD.MM.YYYY, HH:mm")}</SecondaryText>
+        <SecondaryText>Exchange status: <ExchangeStatus open={false}>closed</ExchangeStatus></SecondaryText>
       </div>
       <UserIcon>
         <UserSvg />

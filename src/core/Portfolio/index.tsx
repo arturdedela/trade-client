@@ -7,6 +7,7 @@ import { useStore } from "utils/IoC";
 import { PortfolioStore } from "./store";
 import { observer } from "mobx-react";
 import { formatMoney } from "../../utils/formatMoney";
+import PortfolioTable from "./PortfolioTable";
 
 function Portfolio() {
   const store = useStore(PortfolioStore);
@@ -20,17 +21,19 @@ function Portfolio() {
   return (
     <PortfolioStyled>
       <PortfolioId><WalletSvg /> 129381924812</PortfolioId>
-      <Tabs tabs={[{ text: "Портфель", active: true }]} />
+      <Tabs tabs={[{ text: "Portfolio", active: true }]} />
       <PortfolioValueWrapper>
         <div>
           <PortfolioValue>{formatMoney(portfolioValue)}</PortfolioValue>
-          <SecondaryText>Оценка портфеля</SecondaryText>
+          <SecondaryText>Portfolio value</SecondaryText>
         </div>
         <div>
           <PortfolioValueChange negative={profit < 0}>{formatMoney(profit)}</PortfolioValueChange>
-          <SecondaryText>Прибыль</SecondaryText>
+          <SecondaryText>Total P/L</SecondaryText>
         </div>
       </PortfolioValueWrapper>
+
+      <PortfolioTable securities={securities} />
     </PortfolioStyled>
   )
 }

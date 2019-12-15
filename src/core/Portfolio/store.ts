@@ -12,7 +12,7 @@ export class PortfolioStore {
   @observable portfolio: Portfolio = {
     portfolioValue: 0,
     profit: 0,
-    securities: []
+    securities: [],
   };
 
   async fetchPortfolio(): Promise<Portfolio> {

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SecuritiesStyled } from "./style";
+import { SecuritiesHeader, SecuritiesStyled } from "./style";
 import Security from "../Security";
 import { useStore } from "../../utils/IoC";
 import { SecuritiesStore } from "./store";
@@ -14,6 +14,7 @@ function Securities() {
   
   return (
     <SecuritiesStyled>
+      <SecuritiesHeader>Stocks</SecuritiesHeader>
       {store.securities.map(security => <Security security={security} />)}
     </SecuritiesStyled>
   )
