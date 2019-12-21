@@ -6,11 +6,13 @@ import { SecondaryText } from "uikit/SecondaryText";
 import { useStore } from "utils/IoC";
 import { PortfolioStore } from "./store";
 import { observer } from "mobx-react";
-import { formatMoney } from "../../utils/formatMoney";
+import { formatMoney } from "utils/formatMoney";
 import PortfolioTable from "./PortfolioTable";
+import { SecuritiesStore } from "../Securities/store";
 
 function Portfolio() {
   const store = useStore(PortfolioStore);
+  const { selectSecurityFromPortfolio } = useStore(SecuritiesStore);
 
   useEffect(() => {
     store.fetchPortfolio();
@@ -33,7 +35,7 @@ function Portfolio() {
         </div>
       </PortfolioValueWrapper>
 
-      <PortfolioTable securities={securities} />
+      <PortfolioTable securities={securities} onSecurityClick={selectSecurityFromPortfolio} />
     </PortfolioStyled>
   )
 }

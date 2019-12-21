@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const SecurityStyled = styled.div`
+export const SecurityStyled = styled.div<{ selected?: boolean }>`
   height: 64px;
   display: flex;
   align-items: center;
@@ -8,6 +8,11 @@ export const SecurityStyled = styled.div`
   padding: 12px 8px 12px 12px;
   border-left: 3px solid #e56e17;
   cursor: pointer;
+  transition: 0.3s;
+  
+  ${({ selected }) => selected && css`
+    background-color: rgba(255, 255, 255, 0.15);
+  `};
   
   :hover {
     background-color: #212121;

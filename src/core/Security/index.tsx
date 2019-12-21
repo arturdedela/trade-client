@@ -9,11 +9,11 @@ import {
 import { SecurityProps } from "./interface";
 import { SecondaryText } from "uikit/SecondaryText";
 
-function Security({ security, className }: SecurityProps) {
+function Security({ security, className, onClick, selected }: SecurityProps) {
   const { ticker, marketPrice, changePercents, change, fullName } = security;
 
   return (
-    <SecurityStyled className={className}>
+    <SecurityStyled className={className} onClick={onClick} selected={selected}>
       <div>
         <Ticker>{ticker}</Ticker>
         <SecondaryText>{fullName}</SecondaryText>

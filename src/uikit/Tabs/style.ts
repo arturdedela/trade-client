@@ -7,11 +7,11 @@ export const TabsStyled = styled.div`
 
 export const Tab = styled.button<{ active: boolean }>`
   height: 40px;
-  width: 115px;
   outline: none;
   border: none;
   border-bottom: 3px solid transparent;
   transition: 0.3s;
+  padding: 0 30px;
   
   background-color: transparent;
   color: #7d8083;

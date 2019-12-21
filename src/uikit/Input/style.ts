@@ -6,6 +6,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const Label = styled(SecondaryText)`
+  display: inline-block;
   margin-bottom: 8px;
 `;
 
@@ -21,5 +22,9 @@ export const InputStyled = styled.input`
   
   :focus {
     border-color: #e56e17;
+  }
+  
+  :disabled {
+    background-color: rgba(25, 25, 25, 0.5);
   }
 `;

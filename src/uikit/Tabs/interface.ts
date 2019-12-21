@@ -6,5 +6,6 @@ export interface ITab {
 }
 
 export interface TabsProps {
+  className?: string;
   tabs: ITab[];
 }

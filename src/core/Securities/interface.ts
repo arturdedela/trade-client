@@ -1,5 +1,5 @@
 
-export interface Security {
+export interface ISecurity {
   id: number;
   ticker: string;
   openPrice: number;

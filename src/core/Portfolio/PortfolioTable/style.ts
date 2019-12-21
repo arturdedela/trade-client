@@ -11,6 +11,11 @@ export const TableRow = styled.div`
   justify-content: space-evenly;
   border-bottom: 1px solid #212121;
   
+  :not(:first-child):hover {
+    background-color: #212121;
+    cursor: pointer;
+  }
+  
   > :not(:first-child) {
     flex: 1;
   }

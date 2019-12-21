@@ -9,6 +9,7 @@ import { useStore } from "utils/IoC";
 import { AppStore } from "./AppStore";
 import Auth from "../Auth";
 import { observer } from "mobx-react";
+import Modal from "../../shared/Modal";
 
 function App() {
   const { userLoggedIn } = useStore(AppStore);
@@ -16,6 +17,7 @@ function App() {
   return (
     <AppStyled>
       <GlobalStyle />
+      <Modal />
       {userLoggedIn ? (
         <AppLayout>
           <Securities />

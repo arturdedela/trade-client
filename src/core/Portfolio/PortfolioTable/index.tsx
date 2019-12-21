@@ -3,7 +3,7 @@ import { Profit, TableRow, TableStyled } from "./style";
 import { SecondaryText } from "../../../uikit/SecondaryText";
 import { PortfolioTableProps } from "./interface";
 
-function PortfolioTable({ securities }: PortfolioTableProps) {
+function PortfolioTable({ securities, onSecurityClick }: PortfolioTableProps) {
   return (
     <TableStyled>
       <TableRow>
@@ -14,14 +14,14 @@ function PortfolioTable({ securities }: PortfolioTableProps) {
         <SecondaryText>Average</SecondaryText>
         <SecondaryText>Profit</SecondaryText>
       </TableRow>
-      {securities.map(({ ticker, position, marketPrice, equity, averagePrice, profit }) => (
-        <TableRow>
-          <div>{ticker}</div>
-          <div>{position}</div>
-          <div>{marketPrice}</div>
-          <div>{equity.toFixed(2)}</div>
-          <div>{averagePrice}</div>
-          <Profit negative={profit < 0}>{profit.toFixed(2)}</Profit>
+      {securities.map(security => (
+        <TableRow onClick={() => onSecurityClick(security)}>
+          <div>{security.ticker}</div>
+          <div>{security.position}</div>
+          <div>{security.marketPrice}</div>
+          <div>{security.equity.toFixed(2)}</div>
+          <div>{security.averagePrice}</div>
+          <Profit negative={security.profit < 0}>{security.profit.toFixed(2)}</Profit>
         </TableRow>
       ))}
     </TableStyled>

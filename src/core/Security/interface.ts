@@ -1,6 +1,8 @@
-import { Security } from "../Securities/interface";
+import { ISecurity } from "../Securities/interface";
 
 export interface SecurityProps {
-  security: Security;
+  security: ISecurity;
   className?: string;
+  onClick?(): void;
+  selected?: boolean;
 }

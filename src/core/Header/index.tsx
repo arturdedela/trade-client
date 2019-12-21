@@ -1,37 +1,50 @@
-import React from "react";
-import { ExchangeStatus, HeaderStyled, SelectedSecurity, UserIcon } from "./style";
+import React, { useCallback } from "react";
+import {
+  ExchangeStatus,
+  HeaderStyled,
+  SelectedSecurity,
+  UserIcon
+} from "./style";
 import Button from "uikit/Button";
 import { SecondaryText } from "uikit/SecondaryText";
 import dayjs from "dayjs";
 import { ReactComponent as UserSvg } from "./user.svg";
-import { Security } from "../Securities/interface";
-
-const security: Security = {
-  ticker: "AMD",
-  marketPrice: 25.63000,
-  changePercents: -0.16,
-  change: -0.1050,
-  fullName: "Advanced Micro Devices",
-  id: 1,
-  marketCap: 12312,
-  openPrice: 24,
-  quantity: 23123,
-};
+import { observer } from "mobx-react";
+import { useStore } from "utils/IoC";
+import { ModalStore } from "shared/Modal/store";
+import NewOrderModal from "../NewOrderModal";
+import { SecuritiesStore } from "../Securities/store";
 
 function Header() {
+  const { openModal } = useStore(ModalStore);
+  const { selectedSecurity } = useStore(SecuritiesStore);
+
+  const handleOrderClick = useCallback(() => {
+    openModal(NewOrderModal, { security: selectedSecurity! });
+  }, [openModal, selectedSecurity]);
+
   return (
     <HeaderStyled>
-      <SelectedSecurity security={security} />
-      <Button>NEW ORDER</Button>
+      {selectedSecurity && (
+        <>
+          <SelectedSecurity security={selectedSecurity} />
+          <Button onClick={handleOrderClick}>NEW ORDER</Button>
+        </>
+      )}
       <div>
-        <SecondaryText>Moscow {dayjs().format("DD.MM.YYYY, HH:mm")}</SecondaryText>
-        <SecondaryText>Exchange status: <ExchangeStatus open={false}>closed</ExchangeStatus></SecondaryText>
+        <SecondaryText>
+          Moscow {dayjs().format("DD.MM.YYYY, HH:mm")}
+        </SecondaryText>
+        <br />
+        <SecondaryText>
+          Exchange status: <ExchangeStatus open={false}>closed</ExchangeStatus>
+        </SecondaryText>
       </div>
       <UserIcon>
         <UserSvg />
       </UserIcon>
     </HeaderStyled>
-  )
+  );
 }
 
-export default Header;
+export default observer(Header);
