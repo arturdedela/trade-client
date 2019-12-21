@@ -24,8 +24,8 @@ function Orders() {
         <SecondaryText>Executed quantity</SecondaryText>
         <SecondaryText>Status</SecondaryText>
       </TableRow>
-      {store.orders.map(({ ticker, price, lots, operation, status, executedQuantity }) => (
-        <TableRow>
+      {store.orders.map(({ ticker, price, lots, operation, status, executedQuantity }, i) => (
+        <TableRow key={i}>
           <div>{ticker}</div>
           <div><Operation operation={operation} /></div>
           <div>{lots}</div>

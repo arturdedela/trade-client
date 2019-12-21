@@ -1,6 +1,6 @@
 import React from "react";
 import { Profit, TableRow, TableStyled } from "./style";
-import { SecondaryText } from "../../../uikit/SecondaryText";
+import { SecondaryText } from "uikit/SecondaryText";
 import { PortfolioTableProps } from "./interface";
 
 function PortfolioTable({ securities, onSecurityClick }: PortfolioTableProps) {
@@ -15,7 +15,7 @@ function PortfolioTable({ securities, onSecurityClick }: PortfolioTableProps) {
         <SecondaryText>Profit</SecondaryText>
       </TableRow>
       {securities.map(security => (
-        <TableRow onClick={() => onSecurityClick(security)}>
+        <TableRow key={security.ticker} onClick={() => onSecurityClick(security)}>
           <div>{security.ticker}</div>
           <div>{security.position}</div>
           <div>{security.marketPrice}</div>

@@ -17,6 +17,7 @@ function Securities() {
       <SecuritiesHeader>Stocks</SecuritiesHeader>
       {store.securities.map(security => (
         <Security
+          key={security.id}
           selected={security === store.selectedSecurity}
           security={security}
           onClick={() => store.selectSecurity(security)}

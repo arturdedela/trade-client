@@ -1,4 +1,4 @@
-import { Container, ContainerModule, decorate, injectable, interfaces } from "inversify";
+import { Container, ContainerModule, interfaces } from "inversify";
 import { fluentProvide } from "inversify-binding-decorators";
 // import { RouterStore } from "mobx-react-router";
 import { useMemo } from "react";

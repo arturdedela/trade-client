@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { PriceChange } from "shared/PriceChange";
 import { SecondaryText } from "uikit/SecondaryText";
 

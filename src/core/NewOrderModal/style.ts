@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import Tabs from "../../uikit/Tabs";
-import Button from "../../uikit/Button";
-import { OrderOperation } from "../OrdersAndDeals/Orders/interface";
-import Radio from "../../uikit/Radio";
+import Tabs from "uikit/Tabs";
+import Button from "uikit/Button";
+import Radio from "uikit/Radio";
 
 export const OrderModalStyled = styled.div`
   width: 440px;

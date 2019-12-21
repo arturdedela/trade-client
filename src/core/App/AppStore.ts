@@ -1,6 +1,5 @@
 import { lazyInject, provide } from "utils/IoC";
 import { action, observable } from "mobx";
-import { inject } from "inversify";
 import { API } from "utils/API";
 import { InLoginDto } from "../dto/in.login.dto";
 import { OutLoginDto } from "../dto/out.login.dto";

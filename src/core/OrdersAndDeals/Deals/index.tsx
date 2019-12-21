@@ -34,8 +34,8 @@ function Deals() {
         <SecondaryText>Lots</SecondaryText>
         <SecondaryText>Operation</SecondaryText>
       </TableRow>
-      {store.orders.map(({ ticker, price, lots, operation, time }) => (
-        <TableRow>
+      {store.orders.map(({ ticker, price, lots, operation, time }, i) => (
+        <TableRow key={i}>
           <div>{ticker}</div>
           <div>{formatTime(time)}</div>
           <div>{price ? price.toFixed(2) : 'Market'}</div>
