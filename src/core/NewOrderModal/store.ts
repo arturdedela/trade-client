@@ -8,6 +8,10 @@ import { inject } from "inversify";
 import { API } from "utils/API";
 import { PlaceOrderRequest } from "./dto/PlaceOrderRequest";
 import { OrdersStore } from "../OrdersAndDeals/Orders/store";
+import { PlaceOrderResponse } from "./dto/PlaceOrderResponse";
+import { PortfolioStore } from "../Portfolio/store";
+import { DealsStore } from "../OrdersAndDeals/Deals/store";
+import { ModalStore } from "../../shared/Modal/store";
 
 @provide.singleton()
 export class NewOrderStore {
@@ -16,6 +20,15 @@ export class NewOrderStore {
 
   @inject(OrdersStore)
   ordersStore: OrdersStore;
+
+  @inject(DealsStore)
+  dealsStore: DealsStore;
+
+  @inject(PortfolioStore)
+  portfolioStore: PortfolioStore;
+
+  @inject(ModalStore)
+  modalStore: ModalStore;
 
   @observable private _orderType: OrderType = OrderType.Market;
   @observable operation: OrderOperation = OrderOperation.Buy;
@@ -50,14 +63,22 @@ export class NewOrderStore {
 
   @bind
   async placeOrder() {
-    const response = await this.api.post<PlaceOrderRequest>("/orders/place", {
+    const response = await this.api.post<PlaceOrderRequest, PlaceOrderResponse>("/orders/place", {
       securityId: this.security.id,
       price: this.orderType === OrderType.Limit ? this.lotPrice : undefined,
       lots: this.lots,
       operation: this.operation,
     });
 
-    console.log("Placed order: ", response);
+    this.modalStore.closeModal();
+
+    if (response.executedQuantity > 0) {
+      this.portfolioStore.fetchPortfolio();
+      if (response.executedQuantity === response.lots) {
+        this.dealsStore.fetchDeals();
+      }
+    }
+
     this.ordersStore.fetchOrders();
   }
 }

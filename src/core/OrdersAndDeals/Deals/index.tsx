@@ -5,13 +5,15 @@ import { useStore } from "utils/IoC";
 import { DealsStore } from "./store";
 import { observer } from "mobx-react";
 import dayjs from "dayjs";
-import Operation from "../../../uikit/Operation";
+import Operation from "uikit/Operation";
 
 function Deals() {
   const store = useStore(DealsStore);
 
   useEffect(() => {
     store.fetchDeals();
+    const interval = setInterval(store.fetchDeals, 2000);
+    return () => clearInterval(interval);
   }, [store]);
 
   function formatTime(t: string) {
@@ -38,7 +40,7 @@ function Deals() {
         <TableRow key={i}>
           <div>{ticker}</div>
           <div>{formatTime(time)}</div>
-          <div>{price ? price.toFixed(2) : 'Market'}</div>
+          <div>{price ? Number(price).toFixed(2) : 'Market'}</div>
           <div>{lots}</div>
           <div><Operation operation={operation} /></div>
         </TableRow>

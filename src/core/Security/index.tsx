@@ -24,9 +24,9 @@ function Security({ security, className, onClick, selected }: SecurityProps) {
       </div>
       <div>
         <PriceChangePercent negative={changePercents < 0}>
-          {changePercents.toPrecision(2)}%
+          {changePercents.toFixed(2)}%
         </PriceChangePercent>
-        <PriceChange negative={change < 0}>{change.toPrecision(4)}</PriceChange>
+        <PriceChange negative={change < 0}>{change.toFixed(4)}</PriceChange>
       </div>
     </SecurityStyled>
   );

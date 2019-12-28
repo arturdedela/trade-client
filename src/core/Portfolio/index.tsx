@@ -16,6 +16,8 @@ function Portfolio() {
 
   useEffect(() => {
     store.fetchPortfolio();
+    const interval = setInterval(store.fetchPortfolio, 2000);
+    return () => clearInterval(interval);
   }, [store]);
 
   const { portfolioValue, profit, securities } = store.portfolio;

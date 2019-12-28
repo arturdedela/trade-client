@@ -20,7 +20,7 @@ function PortfolioTable({ securities, onSecurityClick }: PortfolioTableProps) {
           <div>{security.position}</div>
           <div>{security.marketPrice}</div>
           <div>{security.equity.toFixed(2)}</div>
-          <div>{security.averagePrice}</div>
+          <div>{Number(security.averagePrice).toFixed(2)}</div>
           <Profit negative={security.profit < 0}>{security.profit.toFixed(2)}</Profit>
         </TableRow>
       ))}

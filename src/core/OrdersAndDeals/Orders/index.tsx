@@ -12,6 +12,8 @@ function Orders() {
 
   useEffect(() => {
     store.fetchOrders();
+    const interval = setInterval(store.fetchOrders, 2000);
+    return  () => clearInterval(interval);
   }, [store]);
 
   return (

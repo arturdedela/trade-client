@@ -1,8 +1,9 @@
 import { provide } from "utils/IoC";
 import { inject } from "inversify";
-import { API } from "../../utils/API";
+import { API } from "utils/API";
 import { Portfolio } from "./interface";
 import { observable } from "mobx";
+import bind from "shared/decorators/bind";
 
 @provide.singleton()
 export class PortfolioStore {
@@ -15,6 +16,7 @@ export class PortfolioStore {
     securities: [],
   };
 
+  @bind
   async fetchPortfolio(): Promise<Portfolio> {
     this.portfolio = await this.api.get("/portfolio");
 

@@ -13,7 +13,7 @@ export class SecuritiesStore {
   @observable securities: ISecurity[] = [];
   @observable selectedSecurity?: ISecurity;
 
-  @action
+  @action.bound
   async fetchSecurities(): Promise<ISecurity[]> {
     this.securities = await this.api.get('/securities');
 

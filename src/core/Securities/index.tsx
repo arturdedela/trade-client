@@ -10,6 +10,8 @@ function Securities() {
 
   useEffect(() => {
     store.fetchSecurities();
+    const interval = setInterval(store.fetchSecurities, 2000);
+    return () => clearInterval(interval);
   }, [store]);
 
   return (

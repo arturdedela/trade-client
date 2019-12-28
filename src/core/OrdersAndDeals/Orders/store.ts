@@ -3,6 +3,7 @@ import { API } from "utils/API";
 import { Order } from "./interface";
 import { observable } from "mobx";
 import { provide } from "utils/IoC";
+import bind from "shared/decorators/bind";
 
 @provide.singleton()
 export class OrdersStore {
@@ -11,6 +12,7 @@ export class OrdersStore {
 
   @observable orders: Order[] = [];
 
+  @bind
   async fetchOrders(): Promise<Order[]> {
     this.orders = await this.api.get('/orders');
 

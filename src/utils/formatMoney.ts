@@ -1,4 +1,4 @@
 
 export function formatMoney(value: number) {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return value.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
